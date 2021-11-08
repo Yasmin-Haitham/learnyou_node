@@ -1,4 +1,4 @@
-const { stdout } = require("process");
+// const { stdout } = require("process");
 
 // console.log(process.argv)
 var sum = 0;
