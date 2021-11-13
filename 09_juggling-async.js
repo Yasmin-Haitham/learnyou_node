@@ -13,7 +13,7 @@ const asyncPrint = (myurl)=>{
 
             // res.on('error', err =>console.error(err));
 
-            res.on('data',data=> buff.push(data.toString()));
+            res.on('data',data=> buff.push(data));
 
             res.on('end',()=>{
                 resolve( buff.join('') );
@@ -25,25 +25,16 @@ const asyncPrint = (myurl)=>{
 };
 
 async function result (){
-        let message1 = await asyncPrint(myUrl[0]);
-        try {
-            console.log (message1);
-        } catch (error) {
-            console.error(err);
-        }
+      
+        for (let i = 0; i < process.argv.length - 2 ; i++ ){
 
-        let message2 = await asyncPrint(myUrl[1]);
-        try {
-            console.log (message2);
-        } catch (error) {
-            console.error(err);
-        }
+            try {
+                let message = await asyncPrint(myUrl[i]);
+                console.log(message);
+            } catch (error) {
+                console.error(err);
+            }
 
-        let message3 = await asyncPrint(myUrl[2]);
-        try {
-            console.log (message3);
-        } catch (error) {
-            console.error(err);
         }
 };
 result();
